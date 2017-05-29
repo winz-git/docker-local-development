@@ -1,0 +1,39 @@
+version: '2'
+
+services: 
+  web:
+     image: nginx:latest
+     ports:
+       - "8080:80"
+     volumes:
+       - ./site.conf:/etc/nginx/conf.d/default.conf
+     volumes_from:
+       - php
+     networks:
+       - code-network
+
+  php:
+     build: ./php/
+     expose:
+       - 9000
+     volumes:
+       - ~/Projects/nginx-virtual-html/tng-web-phase-2:/code
+     networks:
+       - code-network
+
+  mysql:
+     build: ./mysql/
+     environment:
+       - MYSQL_ROOT_PASSWORD=root
+       - MYSQL_DATABASE=tng-website-cms
+     expose:
+       - 3306
+     volumes:
+       - ./import.sh:/code/import.sh
+       - ~/Projects/nginx-virtual-html/tng-web-phase-2:/code
+     networks:
+       - code-network
+
+networks:
+ code-network:
+     driver: bridge
