@@ -17,7 +17,7 @@ services:
      expose:
        - 9000
      volumes:
-       - ~/Projects/nginx-virtual-html/tng-web-phase-2:/code
+       - ~/Projects/nginx-virtual-html/my-project:/code
      networks:
        - code-network
 
@@ -25,12 +25,12 @@ services:
      build: ./mysql/
      environment:
        - MYSQL_ROOT_PASSWORD=root
-       - MYSQL_DATABASE=tng-website-cms
+       - MYSQL_DATABASE=website
      expose:
        - 3306
      volumes:
        - ./import.sh:/code/import.sh
-       - ~/Projects/nginx-virtual-html/tng-web-phase-2:/code
+       - ~/Projects/nginx-virtual-html/my-project:/code
      networks:
        - code-network
 
