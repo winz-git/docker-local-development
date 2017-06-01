@@ -1,0 +1,45 @@
+version: '2'
+
+services: 
+  web:
+     image: nginx:latest
+     ports:
+       - "8080:80"
+     volumes:
+       - ./site.conf:/etc/nginx/conf.d/default.conf
+       # for aliases
+       - ~/Projects/nginx-virtual-html/javascripts/vue/webviews-api:/code/javascripts/vue/webviews-api
+       # 
+       - ~/Projects/nginx-virtual-html/javascripts/vue-chart/dist:/code/javascripts/vue/vue-chart
+       # 
+       - ~/Projects/nginx-virtual-html/javascripts/vuejs-webpack/dist:/code/javascripts/vue/vuejs-webpack
+     volumes_from:
+       - php
+     networks:
+       - code-network
+
+  php:
+     build: ./php/
+     expose:
+       - 9000
+     volumes:
+       - ~/Projects/nginx-virtual-html/tng-web-phase-2:/code/tng-web-phase-2
+     networks:
+       - code-network
+
+  mysql:
+     build: ./mysql/
+     environment:
+       - MYSQL_ROOT_PASSWORD=root
+       - MYSQL_DATABASE=tng-website-cms
+     expose:
+       - 3306
+     volumes:
+       - ./import.sh:/code/import.sh
+       - ~/Projects/nginx-virtual-html/tng-web-phase-2:/code
+     networks:
+       - code-network
+
+networks:
+ code-network:
+     driver: bridge
