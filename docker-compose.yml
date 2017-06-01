@@ -13,6 +13,8 @@ services:
        - ~/Projects/nginx-virtual-html/javascripts/vue-chart/dist:/code/javascripts/vue/vue-chart
        # 
        - ~/Projects/nginx-virtual-html/javascripts/vuejs-webpack/dist:/code/javascripts/vue/vuejs-webpack
+       # 
+       - ~/Projects/nginx-virtual-html/tng-webviews/views:/code/tng-webviews
      volumes_from:
        - php
      networks:
@@ -40,6 +42,8 @@ services:
        - ~/Projects/nginx-virtual-html/tng-web-phase-2:/code
      networks:
        - code-network
+  
+
 
 networks:
  code-network:
