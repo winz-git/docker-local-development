@@ -33,7 +33,6 @@ services:
      build: ./mysql/
      environment:
        - MYSQL_ROOT_PASSWORD=root
-
        - MYSQL_DATABASE=tng-website-cms
      expose:
        - 3306

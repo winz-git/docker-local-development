@@ -8,6 +8,10 @@ stop:
 
 down:
 	@docker-compose -p docker down
+clean:	stop
+	@docker-compose -p docker rm web php mysql
+clean-images:
+	docker images -q | xargs docker rmi
 list:
 	@docker-compose -p docker ps
 
