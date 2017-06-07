@@ -15,6 +15,10 @@ services:
        - ~/Projects/nginx-virtual-html/javascripts/vuejs-webpack/dist:/code/javascripts/vue/vuejs-webpack
        # 
        - ~/Projects/nginx-virtual-html/tng-webviews/views:/code/tng-webviews
+       # vue-kiara, June 2, 2017
+       - ~/Projects/nginx-virtual-html/javascripts/vue-kiara/dist:/code/vue-kiara
+       # zf2-apigility, June 6, 2017
+       - ~/Projects/nginx-virtual-html/frameworks/zend/apigility:/code/zf2-apigility
      volumes_from:
        - php
      networks:
@@ -26,6 +30,34 @@ services:
        - 9000
      volumes:
        - ~/Projects/nginx-virtual-html/tng-web-phase-2:/code/tng-web-phase-2
+       - ~/Projects/nginx-virtual-html/frameworks/zend/apigility:/code/zf2-apigility
+       # tng-asia, June 6, 2017
+       - ~/Projects/nginx-virtual-html/tng-asia:/code/tng-asia
+
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/asanwallet:/code/global-websites/asanwallet
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/indompet:/code/global-websites/indompet
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/newaleta:/code/global-websites/newaleta
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/philipurse:/code/global-websites/philipurse
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/sehatiwallet:/code/global-websites/sehatiwallet
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/sinhawallet:/code/global-websites/sinhawallet
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/tngqianbao:/code/global-websites/tngqianbao
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/vinawallet:/code/global-websites/vinawallet
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/walletaka:/code/global-websites/walletaka
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/wallethai:/code/global-websites/wallethai
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/walletpak:/code/global-websites/walletpak
+       # tng-asia, June 7, 2017
+       - ~/Projects/nginx-virtual-html/global-websites/websites/xinwallet:/code/global-websites/xinwallet
      networks:
        - code-network
 
@@ -39,6 +71,7 @@ services:
      volumes:
        - ./import.sh:/code/import.sh
        - ~/Projects/nginx-virtual-html/tng-web-phase-2:/code
+       - ~/Projects/nginx-virtual-html/tng-asia:/code/tng-asia
      networks:
        - code-network
   
